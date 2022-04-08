@@ -3,7 +3,7 @@ grafana-with-plugins-docker-image
 
 Introduction
 ------------
-This projects builds a Docker image with [crane](https://github.com/google/go-containerregistry/tree/main/cmd/crane) with pre-installed plugins. It's based on [Build with Grafana Image Renderer plugin pre-installed](https://grafana.com/docs/grafana/latest/installation/docker/#build-with-grafana-image-renderer-plugin-pre-installed) and [ubuntu.Dockerfile](https://github.com/grafana/grafana/blob/main/packaging/docker/custom/ubuntu.Dockerfile)
+This projects builds a Docker image with [Grafana](https://grafana.com/) with pre-installed plugins. It's based on [Build with Grafana Image Renderer plugin pre-installed](https://grafana.com/docs/grafana/latest/installation/docker/#build-with-grafana-image-renderer-plugin-pre-installed) and [ubuntu.Dockerfile](https://github.com/grafana/grafana/blob/main/packaging/docker/custom/ubuntu.Dockerfile)
 and publishes the result on Dockerhub under ```opendevopsrepo/grafana-with-plugins:latest```.
 
 
