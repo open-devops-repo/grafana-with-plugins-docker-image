@@ -7,6 +7,8 @@ ARG GF_INSTALL_IMAGE_RENDERER_PLUGIN="true"
 ARG GF_INSTALL_PLUGINS="vonage-status-panel"
 
 FROM grafana/grafana:${GRAFANA_VERSION}-ubuntu
+ARG GF_INSTALL_IMAGE_RENDERER_PLUGIN
+ARG GF_INSTALL_PLUGINS
 
 USER root
 
@@ -14,12 +16,12 @@ USER root
 ARG DEBIAN_FRONTEND=noninteractive
 
 ARG GF_GID="0"
-ENV GF_PATHS_PLUGINS="/var/lib/grafana-plugins"
+ENV GF_PATHS_PLUGINS="/var/lib/grafana/plugins"
 
 RUN mkdir -p "$GF_PATHS_PLUGINS" && \
     chown -R grafana:${GF_GID} "$GF_PATHS_PLUGINS"
 
-RUN if [ $GF_INSTALL_IMAGE_RENDERER_PLUGIN = "true" ]; then \
+RUN if [ "$GF_INSTALL_IMAGE_RENDERER_PLUGIN" = "true" ]; then \
     apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y gdebi-core && \
@@ -34,7 +36,7 @@ USER grafana
 
 ENV GF_PLUGIN_RENDERING_CHROME_BIN="/usr/bin/google-chrome"
 
-RUN if [ $GF_INSTALL_IMAGE_RENDERER_PLUGIN = "true" ]; then \
+RUN if [ "$GF_INSTALL_IMAGE_RENDERER_PLUGIN" = "true" ]; then \
     grafana-cli \
         --pluginsDir "$GF_PATHS_PLUGINS" \
         --pluginUrl https://github.com/grafana/grafana-image-renderer/releases/latest/download/plugin-linux-x64-glibc-no-chromium.zip \
@@ -54,5 +56,5 @@ RUN if [ ! -z "${GF_INSTALL_PLUGINS}" ]; then \
             grafana-cli --pluginsDir "${GF_PATHS_PLUGINS}" plugins install ${plugin}; \
         fi \
     done \
-fi
+fi ; find /var/lib/grafana
 
