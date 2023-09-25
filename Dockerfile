@@ -2,9 +2,9 @@
 #   https://grafana.com/docs/grafana/latest/installation/docker/#build-with-grafana-image-renderer-plugin-pre-installed
 #   https://github.com/grafana/grafana/blob/main/packaging/docker/custom/ubuntu.Dockerfile
 
-ARG GRAFANA_VERSION="latest"
+ARG GRAFANA_VERSION="10.1.2"
 ARG GF_INSTALL_IMAGE_RENDERER_PLUGIN="true"
-ARG GF_INSTALL_PLUGINS=""
+ARG GF_INSTALL_PLUGINS="vonage-status-panel"
 
 FROM grafana/grafana:${GRAFANA_VERSION}-ubuntu
 
